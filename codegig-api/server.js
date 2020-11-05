@@ -17,9 +17,17 @@ db.authenticate()
 
 const server = express();
 
+// Handlebars
+server.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+server.set('view engine', 'handlebars');
+
+// Index route
 server.get('/', (req, res) => {
-  res.send('Hello coder')
+  res.render('index', { layout: 'landing' })
 })
+
+// Set static folder
+server.use(express.static(path.join(__dirname, 'public')));
 
 // Gig routes
 server.use('/gigs', require('./routes/gigs'))
