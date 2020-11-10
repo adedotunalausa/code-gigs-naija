@@ -21,6 +21,9 @@ const server = express();
 server.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 server.set('view engine', 'handlebars');
 
+// Body Parser
+server.use(bodyParser.urlencoded({ extended: false }));
+
 // Index route
 server.get('/', (req, res) => {
   res.render('index', { layout: 'landing' })
